@@ -366,12 +366,34 @@
     </div>
   </footer>
   <script>
-    // Example order data for demonstration. Replace with dynamic values as needed.
-    const orderItems = [
-      { name: "Fresh Lemery Tomatoes", qty: 2, price: 35.00 },
-      { name: "Brown Rice", qty: 1, price: 60.99 },
-      { name: "Pure Fresh Milk", qty: 3, price: 75.00 }
-    ];
+    // Ambil data cart dari localStorage
+    function getCartFromStorage() {
+      try {
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        if (Array.isArray(cart) && cart.length > 0) return cart;
+      } catch (e) {}
+      // Jika tidak ada, gunakan contoh dummy
+      return [
+        { name: "Fresh Lemery Tomatoes", qty: 2, price: 35.00 },
+        { name: "Brown Rice", qty: 1, price: 60.99 },
+        { name: "Pure Fresh Milk", qty: 3, price: 75.00 }
+      ];
+    }
+
+    // Ambil data customer dari localStorage (jika ada)
+    function getCustomerFromStorage() {
+      try {
+        const ci = JSON.parse(localStorage.getItem('customerInfo'));
+        if (ci && typeof ci === 'object') return ci;
+      } catch (e) {}
+      // Dummy data
+      return {
+        name: "Juan Dela Cruz",
+        contact: "+63 912 345 6789",
+        email: "juan@email.com",
+        address: "Blk 24 Lot 16 Teson St, Mabini Heights Subd, Lipa City"
+      };
+    }
 
     // Payment options
     const paymentMethods = document.querySelectorAll('.payment-method');
@@ -388,7 +410,7 @@
       return '₱' + num.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    function renderOrderTable() {
+    function renderOrderTable(orderItems) {
       const tbody = document.getElementById('order-items');
       let total = 0;
       tbody.innerHTML = '';
@@ -407,7 +429,19 @@
       document.getElementById('order-total').textContent = formatCurrency(total);
     }
 
-    renderOrderTable();
+    function renderCustomerInfo(customer) {
+      document.getElementById('customer-name').textContent = customer.name || "-";
+      document.getElementById('customer-contact').textContent = customer.contact || "-";
+      document.getElementById('customer-email').textContent = customer.email || "-";
+      document.getElementById('customer-address').textContent = customer.address || "-";
+    }
+
+    // Render order and customer info
+    const orderItems = getCartFromStorage();
+    renderOrderTable(orderItems);
+
+    const customer = getCustomerFromStorage();
+    renderCustomerInfo(customer);
 
     // Confirmation logic
     const confirmBtn = document.getElementById('confirm-btn');
@@ -417,12 +451,12 @@
       confirmationSection.style.display = 'none';
       successMessage.style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Clear localStorage cart (opsional, uncomment jika ingin clear cart setelah submit)
+      // localStorage.removeItem('cart');
     });
 
     // Footer year
     document.getElementById('footer-year').textContent = new Date().getFullYear();
-
-    // Responsive navigation not needed for this page, so omitted
   </script>
 </body>
 </html>
