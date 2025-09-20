@@ -2,395 +2,427 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Order Summary | Wynelle Daily Grocery</title>
+  <meta name="description" content="Review your order at Wynelle Daily Grocery. Confirm your details and learn how to complete your grocery purchase easily and securely." />
   <link rel="icon" type="image/png" href="image/FAVICON.png" />
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet" />
   <!-- Remixicon for icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
   <style>
     :root {
-      --primary: #426b1f;
-      --accent: #ffe066;
-      --dark: #1d2d18;
-      --light: #f9fff2;
-      --shadow: 0 8px 32px 0 rgba(66,107,31,0.14);
-      --radius: 1.5rem;
-      --form-bg: #fffbea;
-      --summary-bg: #f8faee;
+      --primary: #1c7c54;
+      --accent: #ffc145;
+      --text: #283618;
+      --background: #f6ffe8;
+      --white: #fff;
+      --radius: 1rem;
+      --shadow: 0 8px 28px 0 rgba(28,124,84,0.10);
+      --border: 1px solid #e4ebd8;
+      --footer-bg: #2a5740;
     }
-    html { scroll-behavior: smooth; }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Montserrat', Arial, sans-serif;
-      background: var(--light);
-      color: var(--dark);
+      background: var(--background);
+      color: var(--text);
       min-height: 100vh;
-      line-height: 1.7;
-      letter-spacing: 0.01em;
-      transition: background 0.4s;
+      display: flex;
+      flex-direction: column;
     }
     a {
       color: var(--primary);
       text-decoration: none;
-      transition: color .22s;
+      transition: color .2s;
     }
     a:hover { color: var(--accent); }
-    img {
-      max-width: 100%;
-      display: block;
-      border-radius: .8rem;
-    }
+    img { max-width: 100%; display: block; border-radius: .55rem; }
     .header {
-      width: 100%;
-      background: rgba(255,255,255,0.98);
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      transition: background .3s;
+      width: 100%; background: var(--white); box-shadow: var(--shadow);
+      position: sticky; top: 0; z-index: 99;
     }
     .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1260px;
-      margin: 0 auto;
-      padding: 1.3rem 2.2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1200px; margin: 0 auto; padding: 1.2rem 2rem;
       position: relative;
     }
     .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+      display: flex; align-items: center; gap: 0.7rem; font-size: 1.4rem; font-weight: 900; color: var(--primary);
+      letter-spacing: 1.5px;
+    }
+    .nav-logo img { width: 44px; height: 44px; }
+    main {
+      flex: 1 0 auto;
+      max-width: 540px;
+      margin: 2.2rem auto 0 auto;
+      padding: 2.4rem 1.1rem 2.4rem 1.1rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .summary-title {
       font-size: 2rem;
       font-weight: 900;
       color: var(--primary);
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 2px;
-    }
-    .nav-logo img {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      box-shadow: 0 2px 8px 0 rgba(66,107,31,0.10);
-      background: #fff;
-    }
-    .nav-list {
-      display: flex;
-      align-items: center;
-      gap: 2.3rem;
-      list-style: none;
-    }
-    .nav-link {
-      color: var(--dark);
-      font-weight: 700;
-      font-size: 1.08rem;
-      padding: 0.22rem 0;
-      position: relative;
-      letter-spacing: 0.5px;
-      transition: color .22s;
-    }
-    .nav-link.active, .nav-link:hover { color: var(--primary); }
-    .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
-    @media (max-width: 900px) {
-      .nav-list { gap: 1.3rem; }
-      .nav { padding: 1.05rem .7rem; }
-    }
-    main {
-      max-width: 700px;
-      margin: 2.8rem auto 0 auto;
-      padding: 2.1rem 1.1rem 2.5rem 1.1rem;
-      background: var(--summary-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .summary-title {
-      font-size: 2.3rem;
-      color: var(--primary);
-      font-weight: 900;
-      font-family: 'Playfair Display', serif;
-      text-align: center;
       margin-bottom: 1.1rem;
-      letter-spacing: 1.2px;
+      text-align: center;
+      letter-spacing: .7px;
     }
-    .summary-step {
-      background: var(--form-bg);
-      border-radius: 1.1rem;
-      box-shadow: 0 2px 14px 0 rgba(66,107,31,0.09);
-      padding: 2rem 1.8rem 1.7rem 1.8rem;
-      margin-bottom: 2.1rem;
-      max-width: 480px;
-      width: 100%;
-      position: relative;
-      transition: box-shadow .16s;
-      border: 1.2px solid #ece6b1;
+    .order-section {
+      margin-bottom: 1.9rem;
     }
-    .summary-step:last-child { margin-bottom: 0; }
-    .summary-step h2 {
-      font-size: 1.32rem;
+    .order-label {
+      font-size: 1.1rem;
+      font-weight: 700;
       color: var(--primary);
-      margin-bottom: 0.6rem;
-      font-weight: 800;
-      font-family: 'Montserrat', sans-serif;
-      letter-spacing: 0.1em;
-      text-align: left;
+      margin-bottom: .6rem;
+      display: block;
     }
-    .summary-step .step-desc {
-      font-size: 1.02rem;
-      color: #486320;
-      margin-bottom: 0.65rem;
-      letter-spacing: 0.01em;
-    }
-    .order-details-table {
+    .order-list {
       width: 100%;
       border-collapse: collapse;
+      background: var(--background);
+      border-radius: .5rem;
+      overflow: hidden;
       margin-bottom: 1.2rem;
     }
-    .order-details-table th, .order-details-table td {
-      font-size: 1.02rem;
+    .order-list th, .order-list td {
+      padding: .75rem;
       text-align: left;
-      padding: 0.6rem 0.4rem;
-      border-bottom: 1px solid #f2e8c8;
+      border-bottom: 1px solid #e4ebd8;
+      font-size: 1rem;
     }
-    .order-details-table th {
+    .order-list th {
+      background: #e8fbd8;
+      font-weight: 700;
       color: var(--primary);
-      font-weight: 800;
-      background: #f9f7e7;
     }
-    .order-details-table td {
-      color: #3d5720;
-      font-weight: 600;
-      background: #fff;
-    }
-    .order-details-table tr:last-child td,
-    .order-details-table tr:last-child th {
+    .order-list tr:last-child td {
       border-bottom: none;
     }
-    .order-total-row th,
-    .order-total-row td {
-      font-size: 1.1rem;
+    .order-total-row th, .order-total-row td {
       font-weight: 900;
       color: var(--primary);
-      background: #fffbe4;
+      border-top: 2px solid #e4ebd8;
     }
-    .customer-info {
+    .customer-details {
       margin-bottom: 1.2rem;
-      font-size: 1.05rem;
-      color: #4a7022;
-      padding-left: 0.2rem;
-      word-break: break-all;
+      background: #f9ffe7;
+      border-radius: .6rem;
+      padding: 1.1rem;
+      border: 1px solid #e4ebd8;
     }
-    .confirm-message {
-      background: #e7ffd9;
-      border: 1.5px solid #a7cf7f;
-      color: #225a1f;
-      border-radius: 1rem;
-      padding: 1.5rem 1.2rem;
-      margin-bottom: 1.7rem;
-      font-size: 1.09rem;
-      text-align: left;
-      box-shadow: 0 2px 12px 0 rgba(66,107,31,0.09);
-      line-height: 1.7;
-    }
-    .confirm-message strong {
-      color: var(--primary);
-      font-size: 1.07rem;
-    }
-    .next-steps {
-      background: #fff6e0;
-      border-radius: 1rem;
-      border: 1.2px solid #ffe066;
-      box-shadow: 0 2px 14px 0 rgba(66,107,31,0.07);
-      padding: 1.5rem 1.2rem 1.3rem 1.2rem;
-      font-size: 1.06rem;
-      color: #4a7022;
-      margin-bottom: 1.6rem;
-      line-height: 1.7;
-      text-align: left;
-    }
-    .next-steps strong {
-      color: var(--primary);
-      font-weight: 800;
-    }
-    .summary-footer {
-      margin-top: 2.7rem;
-      text-align: center;
-      font-size: 1.02rem;
-      color: #8b9d7e;
-      opacity: 0.95;
-      letter-spacing: 0.04em;
-    }
-    .summary-footer a {
+    .customer-details-label {
       color: var(--primary);
       font-weight: 700;
-      text-decoration: underline;
-      transition: color .2s;
+      margin-bottom: .5rem;
+      font-size: 1.05rem;
     }
-    .summary-footer a:hover {
+    .details-list {
+      list-style: none;
+      padding-left: .1rem;
+      margin-bottom: 0;
+      color: #3e5631;
+    }
+    .details-list li {
+      margin-bottom: .4rem;
+      font-size: 1rem;
+    }
+    .edit-link {
+      font-size: .97rem;
+      font-weight: 700;
       color: var(--accent);
+      margin-left: .5rem;
     }
+    .edit-link i {
+      margin-right: .13rem;
+      vertical-align: middle;
+    }
+    .payment-methods {
+      display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+    }
+    .payment-method {
+      display: flex; align-items: center; gap: .5rem;
+      background: #e8fbd8;
+      padding: .7rem 1.2rem;
+      border-radius: .5rem;
+      font-weight: 700;
+      color: var(--primary);
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border .2s;
+    }
+    .payment-method.selected {
+      border: 2px solid var(--accent);
+      background: #fff7e3;
+    }
+    .confirmation-section {
+      background: #e8fbd8;
+      border-radius: .7rem;
+      padding: 1.5rem 1.1rem;
+      margin-bottom: 1.6rem;
+      text-align: center;
+      color: #386140;
+      font-size: 1.08rem;
+      font-weight: 500;
+      border: 1px solid #e4ebd8;
+    }
+    .confirmation-section strong {
+      color: var(--primary);
+    }
+    .confirm-btn {
+      margin-top: .7rem;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 1.08rem;
+      padding: .8rem 2.2rem;
+      border-radius: .55rem;
+      font-weight: 900;
+      cursor: pointer;
+      border: none;
+      transition: background .2s, color .2s, box-shadow .2s;
+      box-shadow: 0 2px 8px 0 rgba(28,124,84,0.09);
+    }
+    .confirm-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+    .success-message {
+      display: none;
+      background: #fff7e3;
+      color: #2a5740;
+      border: 2px solid var(--accent);
+      border-radius: .7rem;
+      padding: 2rem 1.2rem;
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      margin-top: 1.2rem;
+    }
+    .success-message strong { color: var(--primary);}
+    .important-note {
+      color: #b95d0b;
+      background: #fff2cd;
+      border-left: 4px solid var(--accent);
+      padding: .7rem 1.1rem;
+      border-radius: .4rem;
+      margin: 1.2rem 0;
+      font-size: 1rem;
+    }
+    /* Footer */
+    .footer {
+      background: var(--footer-bg); color: var(--white); padding: 2.3rem 0 1.1rem; margin-top: 2.2rem; border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .footer-container {
+      max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: flex-start; padding: 0 2rem;
+    }
+    .footer-brand { flex: 1 1 220px; margin-bottom: 2rem;}
+    .footer-logo {
+      display: flex; align-items: center; font-size: 1.2rem; font-weight: 900; gap: .5rem; margin-bottom: 0.45rem; color: var(--accent);
+    }
+    .footer-logo img { width: 32px; height: 32px; }
+    .footer-desc { color: #ffd87c; font-size: 0.98rem; margin-bottom: .6rem;}
+    .footer-links-group { flex: 1 1 160px; margin-bottom: 2rem;}
+    .footer-links-title { font-size: 1rem; font-weight: 900; margin-bottom: .35rem; letter-spacing: .5px;}
+    .footer-links { display: flex; flex-direction: column; gap: .35rem;}
+    .footer-link { color: #fff7e3; font-size: .96rem; transition: color .2s; opacity: .94;}
+    .footer-link:hover { color: var(--accent);}
+    .footer-bottom { text-align: center; font-size: .95rem; color: #fff7e3; margin-top: 1.5rem; opacity: .85;}
+    .footer-bottom a { color: #fff; font-weight: 700; text-decoration: underline; transition: color .2s;}
+    .footer-bottom a:hover { color: var(--accent);}
+    /* Responsive */
     @media (max-width: 700px) {
-      main {
-        max-width: 98vw;
-        margin: 1.1rem auto 0 auto;
-        padding: 1.1rem 0.1rem 2.1rem 0.1rem;
-        border-radius: 0.9rem;
-      }
-      .summary-step {
-        padding: 1.3rem 0.7rem 1.2rem 0.7rem;
-        border-radius: 0.7rem;
-      }
-      .order-details-table th, .order-details-table td {
-        font-size: 1.01rem;
-      }
+      main { padding: 1rem .5rem 2rem; }
+      .order-list th, .order-list td { font-size: .99rem; padding: .62rem; }
+      .footer-container { padding: 0 1rem; flex-direction: column; gap: 2.2rem; align-items: flex-start;}
     }
     @media (max-width: 500px) {
-      .summary-title {
-        font-size: 1.25rem;
-      }
-      .summary-step h2 {
-        font-size: 1.07rem;
-      }
+      .nav-logo img { width: 32px; height: 32px; }
+      .summary-title { font-size: 1.3rem; }
+      .order-list th, .order-list td { font-size: .96rem; }
+      main { padding: .6rem .2rem 1.2rem; margin-top: 1.1rem;}
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header class="header">
     <nav class="nav">
       <a href="index.html" class="nav-logo">
-        <img src="image/LOGO.png" alt="Wynelle Grocery Logo" />
+        <img src="image/LOGO.png" alt="Wynelle Daily Grocery Logo" />
         Wynelle Daily Grocery
       </a>
-      <ul class="nav-list">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="#shop" class="nav-link">Products</a></li>
-        <li><a href="#about" class="nav-link">About Us</a></li>
-        <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-        <li><a href="#faq" class="nav-link">FAQ</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
     </nav>
   </header>
+  <!-- Main Content -->
   <main>
-    <h1 class="summary-title">Order Received! Thank You for Shopping with Us</h1>
-    <div class="summary-step">
-      <h2>Order Summary</h2>
-      <div class="step-desc">
-        Here is a recap of your order. Please review your selections and personal details for accuracy.
-      </div>
-      <table class="order-details-table" id="order-summary-table">
+    <h1 class="summary-title"><i class="ri-shopping-bag-3-line"></i> Order Review & Confirmation</h1>
+    <section class="order-section">
+      <label class="order-label" for="order-list">Your Selected Items</label>
+      <table class="order-list" id="order-list">
         <thead>
           <tr>
-            <th style="width:45%">Product</th>
-            <th style="width:20%">Quantity</th>
-            <th style="width:20%">Price</th>
-            <th style="width:15%">Subtotal</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Total</th>
           </tr>
         </thead>
-        <tbody>
-          <!-- Order items will be displayed here by JS -->
+        <tbody id="order-items">
+          <!-- Order items will be rendered here by JS -->
         </tbody>
         <tfoot>
           <tr class="order-total-row">
-            <th colspan="3">Total</th>
+            <th colspan="3" style="text-align:right;">Order Total:</th>
             <td id="order-total">₱0.00</td>
           </tr>
         </tfoot>
       </table>
-      <div class="customer-info" id="customer-info">
-        <!-- Customer information will appear here by JS -->
+    </section>
+    <section class="order-section">
+      <div class="customer-details">
+        <div class="customer-details-label">Delivery Information</div>
+        <ul class="details-list" id="customer-info">
+          <li><strong>Name:</strong> <span id="customer-name">Juan Dela Cruz</span></li>
+          <li><strong>Contact:</strong> <span id="customer-contact">+63 912 345 6789</span></li>
+          <li><strong>Email:</strong> <span id="customer-email">juan@email.com</span></li>
+          <li><strong>Address:</strong> <span id="customer-address">Blk 24 Lot 16 Teson St, Mabini Heights Subd, Lipa City</span></li>
+        </ul>
+        <a href="index.html#cart" class="edit-link"><i class="ri-edit-2-line"></i>Edit Details</a>
       </div>
-    </div>
-    <div class="summary-step">
-      <h2>What Happens Next?</h2>
-      <div class="step-desc">
-        Your order has been successfully submitted. One of our team members will reach out to you soon to confirm all details—including product colors, available stock, and any special instructions. Kindly review the information provided to you by our staff and confirm its accuracy.
+    </section>
+    <section class="order-section">
+      <div class="order-label">Preferred Payment Method</div>
+      <div class="payment-methods" id="payment-methods">
+        <div class="payment-method selected" data-method="GCash"><i class="ri-wallet-3-line"></i> GCash</div>
+        <div class="payment-method" data-method="Bank Transfer"><i class="ri-bank-card-line"></i> Bank Transfer</div>
+        <div class="payment-method" data-method="Cash on Delivery"><i class="ri-money-dollar-circle-line"></i> Cash on Delivery</div>
       </div>
-      <div class="confirm-message" id="order-confirm-message">
-        <strong>Confirmation Required:</strong><br>
-        Please check your messages or email for our follow-up. After you verify your order details, we will send you a payment link according to your preferred payment method.<br><br>
-        <span style="font-weight:700;">Kindly complete your payment within <span style="color:var(--primary);font-weight:800;">24 hours</span> to secure your order.</span><br>
-        <span style="font-size:0.96em;color:#b8731a;"><i class="ri-error-warning-line" style="margin-right:4px;"></i> If payment is not received within the 24-hour timeframe, your order will be automatically cancelled.</span>
+    </section>
+    <section class="confirmation-section" id="confirmation-section">
+      <strong>Before submitting your order</strong>, please review all details above. After clicking "Confirm Order", our team will reach out to you to verify your order, confirm product availability, and finalize any preferences such as quantity, product variations, and delivery schedule.
+      <br><br>
+      Once you confirm these details with our representative, you will receive a secure payment link for your chosen method. Kindly complete your payment within <strong>24 hours</strong> to secure your order. Unpaid orders after 24 hours will be automatically cancelled to ensure fairness to other customers.
+      <br><br>
+      <button class="confirm-btn" id="confirm-btn"><i class="ri-checkbox-circle-line"></i> Confirm Order</button>
+    </section>
+    <section class="success-message" id="success-message">
+      <strong>Thank you! Your order has been submitted successfully.</strong>
+      <br><br>
+      A member of our team will contact you shortly to confirm your order details, including product availability and any preferences you may have indicated.
+      <br>
+      After confirmation, you will receive a payment link based on your selected payment method. Please ensure payment is completed within 24 hours to avoid automatic cancellation.
+      <div class="important-note">
+        <i class="ri-information-line"></i>
+        <b>Note:</b> Orders are only confirmed once payment has been received (unless you chose Cash on Delivery). For any questions or changes, please contact us at <a href="mailto:contact@wynellegrocery.com">contact@wynellegrocery.com</a> or call <a href="tel:+639264879034">+63 926 487 9034</a>.
       </div>
-      <div class="next-steps">
-        <strong>Need assistance?</strong> Our team is always ready to help. For questions or changes to your order, please contact us at <a href="mailto:contact@wynellegrocery.com">contact@wynellegrocery.com</a> or call <a href="tel:+639264879034">+63 926 487 9034</a>.<br><br>
-        We appreciate your trust in Wynelle Daily Grocery. Thank you for supporting your local neighborhood grocery!
-      </div>
-    </div>
-    <div class="summary-footer">
-      <span>Wynelle Daily Grocery &mdash; Blk 24 Lot 16 Teson St, Mabini Heights Subd, Lipa City, Batangas, Philippines</span><br>
-      <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="refund-policy.html">Refund Policy</a>
-    </div>
+    </section>
   </main>
-  <footer class="footer" style="background: #1d2d18; color: #fff; padding: 2.3rem 0 1rem; margin-top: 2.6rem; border-radius: var(--radius) var(--radius) 0 0; position: relative;">
-    <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2.2rem; justify-content: space-between; align-items: flex-start; padding: 0 2.2rem; position: relative; z-index: 2;">
-      <div style="flex: 1 1 230px; margin-bottom: 2.3rem; z-index: 2;">
-        <div style="display: flex; align-items: center; font-size: 1.25rem; font-weight: 900; gap: .58rem; margin-bottom: 0.52rem; color: var(--accent); font-family: 'Playfair Display', serif;">
-          <img src="image/LOGO.png" alt="Wynelle Grocery Logo" style="width:35px;height:35px;border-radius:50%;" />
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="image/LOGO.png" alt="Wynelle Daily Grocery Logo" />
           Wynelle Daily Grocery
         </div>
-        <div style="color: #ffe066; font-size: 1.04rem; margin-bottom: .69rem;">
-          Blk 24 Lot 16 Teson St, Mabini Heights Subd, Lipa City, Batangas 4217, Philippines<br>
+        <div class="footer-desc">
+          Blk 24 Lot 16 Teson St, Mabini Heights Subd, Lipa City, Batangas<br>
           Email: <a href="mailto:contact@wynellegrocery.com" style="color:var(--accent);">contact@wynellegrocery.com</a><br>
           Phone: <a href="tel:+639264879034" style="color:var(--accent);">+63 926 487 9034</a><br>
-          DTI: 681-770-820-000 | VAT Registered
+          DTI: 681-770-820-000 | VAT: Active
         </div>
       </div>
-      <div>
-        <div style="font-size: 1.08rem; font-weight: 900; margin-bottom: .41rem; letter-spacing: .52px; font-family: 'Poppins', sans-serif;">Legal</div>
-        <div style="display: flex; flex-direction: column; gap: .41rem;">
-          <a href="privacy-policy.html" style="color:#fffbe5;font-size: 1.02rem;opacity: .93;">Privacy Policy</a>
-          <a href="terms.html" style="color:#fffbe5;font-size: 1.02rem;opacity: .93;">Terms of Service</a>
-          <a href="refund-policy.html" style="color:#fffbe5;font-size: 1.02rem;opacity: .93;">Refund Policy</a>
+      <div class="footer-links-group">
+        <div class="footer-links-title">Company</div>
+        <div class="footer-links">
+          <a href="index.html#about" class="footer-link">About Us</a>
+          <a href="index.html#services" class="footer-link">Services</a>
+          <a href="index.html#contact" class="footer-link">Contact</a>
+        </div>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-links-title">Help</div>
+        <div class="footer-links">
+          <a href="index.html#testimonials" class="footer-link">Testimonials</a>
+          <a href="index.html#faq" class="footer-link">FAQ</a>
+        </div>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-links-title">Legal</div>
+        <div class="footer-links">
+          <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+          <a href="terms.html" class="footer-link">Terms of Service</a>
+          <a href="refund-policy.html" class="footer-link">Refund Policy</a>
         </div>
       </div>
     </div>
-    <div style="text-align: center; font-size: 1.01rem; color: #fffbe5; margin-top: 1.7rem; opacity: .87; position: relative; z-index: 2;">
+    <div class="footer-bottom">
       &copy; <span id="footer-year"></span> Wynelle Daily Grocery | DTI: 681-770-820-000<br>
-      All content &copy; 2025 Wynelle Daily Grocery. Proudly Batangueño.
+      Proudly serving Lipa City and nearby communities.
     </div>
   </footer>
   <script>
-    // DUMMY DATA for demonstration (replace with your JS logic or server-side rendering as needed)
+    // Example order data for demonstration. Replace with dynamic values as needed.
     const orderItems = [
-      { name: "Fresh Tomatoes", qty: 2, price: 39.00 },
-      { name: "Premium Rice (5kg)", qty: 1, price: 250.00 },
-      { name: "Laundry Detergent (1kg)", qty: 3, price: 78.00 }
+      { name: "Fresh Lemery Tomatoes", qty: 2, price: 35.00 },
+      { name: "Brown Rice", qty: 1, price: 60.99 },
+      { name: "Pure Fresh Milk", qty: 3, price: 75.00 }
     ];
-    const customer = {
-      name: "Juan Dela Cruz",
-      phone: "+63 900 123 4567",
-      email: "juan.delacruz@email.com",
-      address: "Blk 123, Example St., Lipa City, Batangas"
-    };
-    // Populate table
-    const tbody = document.querySelector("#order-summary-table tbody");
-    let total = 0;
-    orderItems.forEach(item => {
-      const subtotal = item.qty * item.price;
-      total += subtotal;
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${item.name}</td>
-        <td>${item.qty}</td>
-        <td>₱${item.price.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
-        <td>₱${subtotal.toLocaleString(undefined, {minimumFractionDigits:2})}</td>`;
-      tbody.appendChild(tr);
+
+    // Payment options
+    const paymentMethods = document.querySelectorAll('.payment-method');
+    let selectedPayment = "GCash";
+    paymentMethods.forEach(pm => {
+      pm.addEventListener('click', function() {
+        paymentMethods.forEach(p => p.classList.remove('selected'));
+        pm.classList.add('selected');
+        selectedPayment = pm.getAttribute('data-method');
+      });
     });
-    document.getElementById("order-total").textContent = "₱" + total.toLocaleString(undefined, {minimumFractionDigits:2});
-    // Customer info
-    document.getElementById("customer-info").innerHTML =
-      `<strong>Customer Name:</strong> ${customer.name}<br>
-       <strong>Mobile:</strong> ${customer.phone}<br>
-       <strong>Email:</strong> ${customer.email}<br>
-       <strong>Delivery Address:</strong> ${customer.address}`;
+
+    function formatCurrency(num) {
+      return '₱' + num.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function renderOrderTable() {
+      const tbody = document.getElementById('order-items');
+      let total = 0;
+      tbody.innerHTML = '';
+      orderItems.forEach(item => {
+        const itemTotal = item.qty * item.price;
+        total += itemTotal;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.qty}</td>
+          <td>${formatCurrency(item.price)}</td>
+          <td>${formatCurrency(itemTotal)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+      document.getElementById('order-total').textContent = formatCurrency(total);
+    }
+
+    renderOrderTable();
+
+    // Confirmation logic
+    const confirmBtn = document.getElementById('confirm-btn');
+    const confirmationSection = document.getElementById('confirmation-section');
+    const successMessage = document.getElementById('success-message');
+    confirmBtn.addEventListener('click', function() {
+      confirmationSection.style.display = 'none';
+      successMessage.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     // Footer year
-    document.getElementById("footer-year").textContent = new Date().getFullYear();
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // Responsive navigation not needed for this page, so omitted
   </script>
 </body>
 </html>
